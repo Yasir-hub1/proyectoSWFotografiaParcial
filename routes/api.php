@@ -2,6 +2,8 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\Api\ClienteController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,6 +16,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+//TODO: rutas de autenticación
+Route::post('/login', [AuthController::class, 'login']);
+Route::post("/signup", [AuthController::class, "signup"]);
+
+//TODO: Rutas protegidas por sanctum
+Route::group(['middleware' => 'auth:sanctum'], function () {
+    Route::post("/logout", [AuthController::class, "logout"]);
+    Route::get('perfilFotoCliente', [ClienteController::class, 'getFotoCliente']);
 });
