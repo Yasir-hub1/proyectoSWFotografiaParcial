@@ -1,10 +1,11 @@
 <?php
-
+use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\FotografoController;
 use App\Http\Controllers\EventoController;
 use App\Http\Controllers\AlbumController;
 use App\Http\Controllers\DetalleOrdenController;
+use App\Http\Controllers\FotoController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,13 +20,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth.login');
 });
 
-/* Route::get('tareas', function(){
-    return view('tareas');
-});
- */
 
 Route::middleware([
     'auth:sanctum',
@@ -42,13 +39,16 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::get('/home2', [App\Http\Controllers\HomeController2::class, 'index'])->name('home2');
 
 
-Auth::routes();
+/*Auth::routes();*/
 
 Route::resource('fotografos', FotografoController::class);
 Route::resource('clientes', ClienteController::class);
 Route::resource('eventos',EventoController::class);
 Route::resource('albums',AlbumController::class);
-Route::resource('detalleOrden',DetalleOrdenController::class);
+Route::post('albums/verEvento',[AlbumController::class,"verEventoFoto"])->name("verEventoFoto");
+Route::resource('fotos',FotoController::class);
+
+//Route::resource('detalleOrden',DetalleOrdenController::class);
 
 Route::get('eventos/generarCatalogo',[EventoController::class, 'generarCatalogo'])->name('eventos.generarCatalogo');
 

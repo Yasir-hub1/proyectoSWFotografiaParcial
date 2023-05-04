@@ -49,8 +49,6 @@
         <li class="nav-item{{  'departamentos' ? ' ' : '' }}"><a class="nav-link"href="{{route('eventos.index')}}" >Ver Evento</a></li>
        <!-- <li class="nav-item{{  'departamentos' ? ' ' : '' }}"><a class="nav-link"href="{{route('eventos.generarCatalogo')}}" >Ver Catalogos</a></li> -->
 
-
-
       </ul>
     </li>
     @endrole

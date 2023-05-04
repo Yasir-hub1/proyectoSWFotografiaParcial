@@ -15,8 +15,9 @@
                <div class="card card-primary">
                     <div class="card-body">
                         <br>
-                        <form action="{{ route('albums.store') }}" method="POST" enctype="multipart/form-data" class="form-horizontal">
+                        <form action="{{ route('fotos.store') }}" method="POST" enctype="multipart/form-data" class="form-horizontal">
                             @csrf
+                            @method('POST')
                             <label for="evento_id" class="col-sm-2 col-form-label">Evento</label>
                                     <div class="col-sm-3">
                                             <select name="evento_id" id="inputEvento_id" class="form-control">
@@ -32,37 +33,23 @@
                                                 {{ $errors->first('evento_id') }}
                                             </span>
                                         @endif
-                                    </div> 
-                            <div class="row">
-                                <div class="col-md-6">
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="cantidad_fotos">Cantidad de Fotos<span class="required">*</span></label>
-                                        <input type="number" class="form-control  @error('cantidad_fotos') is-invalid @enderror" name="cantidad_fotos" placeholder="Cantidad de fotos...">
-                                        @error('cantidad_fotos')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                        @enderror
                                     </div>
-                                </div>
-
-                                <form action="{{ route('albums.store') }}" method="POST" class="dropzone" id="my-awesome-dropzone"> 
+                           <div class="row">
+                               {{-- <form action="{{ route('fotos.store') }}" method="POST" class="dropzone" id="my-awesome-dropzone"> --}}
                                     <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="exampleFormControlInput1">Imagen<span class="required">*</span></label>
-                                        <input type="file" class="form-control  @error('file') is-invalid @enderror" name="file" accept="image/*" placeholder="Imágenes del Evento...">
+                                        <input type="file" class="form-control  @error('file') is-invalid @enderror" name="imagen" accept="image/*" placeholder="Imágenes del Evento...">
                                         <br>
-                                        @error('file')
+                                        @error('imagen')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
                                         </span>
                                         @enderror
-                                       </br>  
+                                       </br>
                                     </div>
-                                </div> 
-                                </form>
+                                </div>
+                                {{-- </form> --}}
 
                                 <div class="col-md-6">
                                     <div class="form-group">
@@ -75,7 +62,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                
+
 
                             <div class="col-md-6">
                                 <button type="submit" class="btn btn-primary">Subir Imágenes</button>
@@ -84,7 +71,7 @@
                         </form>
                     </div>
                 </div>
-                <!--<form action="{{ route('albums.store') }}"
+                <!--<form action="{{ route('fotos.store') }}"
                 method="POST"
                 class="dropzone"
                 id="my-awesome-dropzone"> </form>-->
@@ -93,19 +80,19 @@
     </div>
 
 </section>
-@endsection 
+@endsection
 @section('js')   <!---ESTO AUMENTE PARA UTILIZAR PLUGIN DROPZONE -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.3/dropzone.min.js" integrity="sha512-U2WE1ktpMTuRBPoCFDzomoIorbOyUv0sP8B+INA3EzNAhehbzED1rOJg6bCqPf/Tuposxb5ja/MAUnC8THSbLQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<script> 
+<script>
     Dropzone.options.myAwesomeDropZone = {
         header:{
             'X-CSRF-TOKEN' : "{{csrf_token()}}"
         },
         dictDefaultMessage: "Arrastre una imagen al recuadro para subirlo",
         acceptedFiles: "image/*",
-        maxFilesize: 2,  /* Tamaño de la imagen, por lo general es de 2 mb*/ 
-        maxFiles: 350 
+        maxFilesize: 2,  /* Tamaño de la imagen, por lo general es de 2 mb*/
+        maxFiles: 350
     };
     </script>
 
-@endsection 
+@endsection

@@ -2,8 +2,11 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Foto;
+use App\Models\User;
+use App\Models\Album;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Evento extends Model
 {
@@ -20,7 +23,8 @@ class Evento extends Model
         'precio',
         'estado',
         'code_qr',
-        'user_id'];
+        'user_id',
+        'fotos_id'];
 
     public function user(){
         return $this->belongsTo(User::class);
@@ -28,5 +32,9 @@ class Evento extends Model
 
     public function album(){
         return $this->hasOne(Album::class);
+    }
+
+    public function foto(){
+        return $this->belongsTo(Foto::class);
     }
 }

@@ -1,7 +1,11 @@
 {
     "/js/app.js": "/js/app.js?id=1bd5e300ba875ff73a4bbca21658e7be",
     "/js/scripts.min.js": "/js/scripts.min.js?id=69a18678995d40115266c7a1947d1fc6",
+<<<<<<< HEAD
     "/assets/js/profile.js": "/assets/js/profile.js?id=e2b2502e19add5f7fb50817d657634ec",
+=======
+    "/assets/js/profile.js": "/assets/js/profile.js?id=81e35f8d4f6a0e6c83666aa7fb7459a7",
+>>>>>>> main
     "/assets/js/custom/custom.js": "/assets/js/custom/custom.js?id=e7ddf77194663851d80abd254c44bb47",
     "/assets/js/custom/custom-datatable.js": "/assets/js/custom/custom-datatable.js?id=981909c14c7eb5185114f556f8865d70",
     "/css/app.css": "/css/app.css?id=c938931de582e64e1f929c6aa704783d",

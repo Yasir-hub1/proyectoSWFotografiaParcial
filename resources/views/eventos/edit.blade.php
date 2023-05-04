@@ -4,7 +4,7 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-12">
-                    <form action="{{ route('eventos.update') }}" method="POST" class="form-horizontal">
+                    <form action="{{ route('eventos.update',['id' => $eventos->id]) }}" method="POST" class="form-horizontal">
                         @csrf
                         @method('PUT')
                         <div class="card">

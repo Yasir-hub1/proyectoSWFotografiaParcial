@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Evento;
 use App\Models\Album;
+use App\Models\Foto;
+use App\Models\Fotografo;
 use Illuminate\Support\Facades\Auth;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
 use Illuminate\Support\Facades\Storage;
@@ -30,7 +32,6 @@ class EventoController extends Controller
      */
     public function create()
     {
-        //
        return view('eventos.create');
     }
 
@@ -64,7 +65,11 @@ class EventoController extends Controller
         $filename = storage_path(). '\app\public\codesqr/' .$imagen;
         //$name = substr($filename, 43);
         $name = substr($filename, 63);
-        QrCode::size(400)->generate($evento, $filename);
+        QrCode::generate($evento, $filename);
+        QrCode::size(500)
+        ->backgroundColor(255,255,204)
+        ->generate($evento, $filename);
+        
         $url = Storage::url($name);
         $evento->code_qr = $url;
         $evento->save();
@@ -73,7 +78,7 @@ class EventoController extends Controller
             'evento_id' => $evento->id,
         ]);*/
         return redirect()->route('eventos.index');
-        
+
     }
 
     /**
@@ -112,8 +117,8 @@ class EventoController extends Controller
         $eventos = Evento::findOrFail($id);
         $datos = $request->all();
         $eventos->update($datos);
-
-        return redirect()->route('eventos.index')->with('mensaje','Datos actualizados correctamente');
+        
+        return redirect('/eventos')->route('eventos.index')->with('mensaje','Datos actualizados correctamente');
     }
 
     /**
@@ -129,7 +134,7 @@ class EventoController extends Controller
     }
 
     public function generarCatalogo(){
-        
+
         $fotografos = Fotografo::all();
         return view('eventos.generarCatalogo');
     }
